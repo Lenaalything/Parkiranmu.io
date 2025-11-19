@@ -1,15 +1,15 @@
 from flask import Flask, jsonify, request, send_from_directory
-import pymysql  
+import pymysql
 from flask_cors import CORS
 
 app = Flask(__name__, static_folder='static')
 CORS(app)
 
 
-app.config['MYSQL_HOST'] = 'localhost'
-app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PASSWORD'] = ''
-app.config['MYSQL_DB'] = 'db_parkir'
+app.config['MYSQL_HOST'] = 'EvERLASTING.mysql.pythonanywhere-services.com'
+app.config['MYSQL_USER'] = 'EvERLASTING'
+app.config['MYSQL_PASSWORD'] = 'putr4s3ty4'
+app.config['MYSQL_DB'] = 'EvERLASTING$db_parkiran'
 
 
 def get_db_connection():
@@ -70,7 +70,7 @@ def read_all_parkiran():
         return jsonify(results), 200
     except Exception as e:
         print(e)
-        return jsonify({'message': 'Terjadi kesalahan pada server'}), 500   
+        return jsonify({'message': 'Terjadi kesalahan pada server'}), 500
     finally:
         if cursor:
             cursor.close()
@@ -87,7 +87,7 @@ def update_parkiran(slot):
 
         if status is None:
             return jsonify({'message': 'Data tidak lengkap!'}), 400
-        
+
         conn = get_db_connection()
         cursor = conn.cursor()
 
